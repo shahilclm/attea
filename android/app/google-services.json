@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "639245974310",
+    "project_id": "attendancepro-efbe4",
+    "storage_bucket": "attendancepro-efbe4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639245974310:android:2592152f459457246b1fe7",
+        "android_client_info": {
+          "package_name": "com.supportta.attea"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXm7fjTumVLCEzFxpeSkbKC7ZoiXE_Bwo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

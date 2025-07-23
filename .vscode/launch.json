@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug ",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main_debug.dart"
+      },
+      {
+        "name": "Production ",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main_production.dart"
+        
+      },
+
+
+      {
+        "name": "Testing ",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main_testing.dart"
+      },
+      {
+        "name": "Release ",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main_release.dart"
+      }
+    ]
+  }
+  
