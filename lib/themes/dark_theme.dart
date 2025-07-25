@@ -30,14 +30,12 @@ final ThemeData darkTheme = lightTheme.copyWith(
       ),
     ),
     iconTheme: WidgetStatePropertyAll(
-      IconThemeData(
-        color: CustomColors.primaryColor,
-        size: 24.v,
-      ),
+      IconThemeData(color: CustomColors.primaryColor, size: 24.v),
     ),
   ),
-  dividerTheme:
-      lightTheme.dividerTheme.copyWith(color: CustomColors.kDarkDividerColor),
+  dividerTheme: lightTheme.dividerTheme.copyWith(
+    color: CustomColors.kDarkDividerColor,
+  ),
   appBarTheme: lightTheme.appBarTheme.copyWith(
     surfaceTintColor: CustomColors.kDarkDividerColor,
     backgroundColor: CustomColors.kDarkScaffold,
@@ -57,8 +55,11 @@ final ThemeData darkTheme = lightTheme.copyWith(
     ),
   ),
   inputDecorationTheme: lightTheme.inputDecorationTheme.copyWith(
+    fillColor: CustomColors.textFormFilledColorDark,
+
     hintStyle: TextStyle(
       color: CustomColors.textColorGrey,
+
       fontWeight: FontWeight.w500,
     ),
     border: OutlineInputBorder(

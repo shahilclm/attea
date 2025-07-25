@@ -62,7 +62,7 @@ final lightTheme = ThemeData(
     ),
   ),
   inputDecorationTheme: InputDecorationTheme(
-    fillColor: Colors.white,
+    fillColor: Colors.red,
     filled: true,
     hintStyle: TextStyle(
       color: CustomColors.textColorGrey,

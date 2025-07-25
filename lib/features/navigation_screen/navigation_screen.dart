@@ -1,9 +1,9 @@
 // import '../example_pages/carousel_example.dart';
 import '../example_pages/carousel_example.dart';
 import '../example_pages/features_example.dart';
-import '/features/profile_screen/profile_screen.dart';
+import '../profile_screen/view/profile_screen.dart';
 
-import '../add_screen/view/add_screen.dart';
+import '../employee_screen/view/employee_screen.dart';
 import '/features/search_screen.dart/view/search_screen.dart';
 
 import '../../extensions/app_theme_extensions.dart';
@@ -38,11 +38,12 @@ class _NavigationScreenState extends State<NavigationScreen> {
     switch (index) {
       case 0:
         return HomeScreen(
-            openDrawer: () => _scaffoldKey.currentState?.openDrawer());
+          openDrawer: () => _scaffoldKey.currentState?.openDrawer(),
+        );
       case 1:
         return SearchScreen();
       case 2:
-        return AddScreen();
+        return EmployeeScreen();
       case 3:
         // return const Center(child: Text('Notifications Page'));
         // return AlertScreen();
@@ -74,8 +75,9 @@ class _NavigationScreenState extends State<NavigationScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final appColors = theme.extension<AppThemeColors>()!;
-    final TextStyle drawerTextStyle =
-        context.labelMedium.copyWith(color: appColors.textContrastColor);
+    final TextStyle drawerTextStyle = context.labelMedium.copyWith(
+      color: appColors.textContrastColor,
+    );
     final navBarTheme = NavigationBarTheme.of(context);
 
     return PopScope(
@@ -101,9 +103,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
             padding: EdgeInsets.zero,
             children: [
               DrawerHeader(
-                decoration: BoxDecoration(
-                  color: CustomColors.secondaryColor,
-                ),
+                decoration: BoxDecoration(color: CustomColors.secondaryColor),
                 child: Text('Drawer Header'),
               ),
               ListTile(title: Text('Home', style: drawerTextStyle)),
@@ -116,26 +116,22 @@ class _NavigationScreenState extends State<NavigationScreen> {
                   // Navigator.restorablePushReplacementNamed(
                   //     context, FeaturesExample.path);
                 },
-                title: Text(
-                  'Features',
-                  style: drawerTextStyle,
-                ),
-              )
+                title: Text('Features', style: drawerTextStyle),
+              ),
             ],
           ),
         ),
 
         // key: _scaffoldKey,
         body: GestureDetector(
-            onTap: () {
-              FocusManager.instance.primaryFocus?.unfocus();
-            },
-            child: IndexedStack(
-                index: _selectedIndex,
-                children: List.generate(
-                  5,
-                  (index) => _getPage(index),
-                ))),
+          onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          child: IndexedStack(
+            index: _selectedIndex,
+            children: List.generate(5, (index) => _getPage(index)),
+          ),
+        ),
         bottomNavigationBar: Material(
           elevation: 40,
           shadowColor: Colors.black,
@@ -146,13 +142,16 @@ class _NavigationScreenState extends State<NavigationScreen> {
             type: BottomNavigationBarType.fixed,
             // backgroundColor: appColors.background,
             backgroundColor: navBarTheme.backgroundColor,
+
+            // backgroundColor: CustomColors.kDarkDividerColor,
             selectedItemColor: CustomColors.primaryColor,
             unselectedItemColor: CustomColors.textColorGrey,
             selectedFontSize: 12.fSize,
             unselectedFontSize: 12.fSize,
             selectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
-            unselectedLabelStyle:
-                const TextStyle(fontWeight: FontWeight.normal),
+            unselectedLabelStyle: const TextStyle(
+              fontWeight: FontWeight.normal,
+            ),
             selectedIconTheme: IconThemeData(size: 24.h),
             unselectedIconTheme: IconThemeData(size: 24.h),
             items: List.generate(5, (index) => _buildNavItem(index)),
@@ -166,11 +165,11 @@ class _NavigationScreenState extends State<NavigationScreen> {
     final icons = [
       Icons.home,
       Icons.search,
-      Icons.add,
+      Icons.group_add_rounded,
       Icons.notifications,
       Icons.person,
     ];
-    final labels = ['Home', 'Search', 'Add', 'Alerts', 'Profile'];
+    final labels = ['Home', 'Search', 'Employees', 'Alerts', 'Profile'];
     final bool isSelected = _selectedIndex == index;
 
     return BottomNavigationBarItem(

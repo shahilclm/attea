@@ -1,13 +1,12 @@
 import 'package:attea/exporter/exporter.dart';
+import 'package:attea/features/profile_screen/widgets/custom_tile.dart';
+import 'package:attea/features/profile_screen/widgets/logout_dialog.dart';
 import 'package:attea/gen/assets.gen.dart';
-import 'package:attea/services/size_utils.dart';
 import 'package:gap/gap.dart';
-
-import '/core/logger.dart';
 
 import 'package:flutter/material.dart';
 
-import '../../extensions/app_theme_extensions.dart';
+import '../../../extensions/app_theme_extensions.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -22,6 +21,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     logError("⚠️ ProfileScreen build called");
     final appColors = Theme.of(context).extension<AppThemeColors>()!;
     return Scaffold(
+      backgroundColor: CustomColors.lightDarkColor,
       // appBar: AppBar(
       //   backgroundColor: appColors.background,
       //   title: Text(
@@ -55,15 +55,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 style: context.headlineLarge.copyWith(
                   fontFamily: 'IntelOneMono',
                   fontSize: 20.fSize,
+                  color: CustomColors.textColorLight,
                 ),
               ),
-              Text('Software Development and Digital Marketing'),
+              Text(
+                'Software Development and Digital Marketing',
+                style: TextStyle(
+                  color: CustomColors.textColorLightGrey,
+                  fontFamily: CustomFont.intelOneMono,
+                ),
+              ),
+              Gap(CustomPadding.paddingXXL),
 
               Expanded(
                 child: ListView(
                   children: [
-                    ListTile(
-                      leading: CircleAvatar(child: Icon(Icons.settings)),
+                    CustomProfileTile(
+                      icon: Icons.settings,
+                      title: 'Settings',
+                      fontColor: CustomColors.textColorLightGrey,
+
+                      color: CustomColors.kDarkDividerColor,
+                    ),
+                    Divider(thickness: 0.1),
+                    CustomProfileTile(
+                      title: 'Log out',
+                      icon: Icons.logout,
+                      fontColor: CustomColors.scaffoldRed,
+                      color: CustomColors.scaffoldRed,
+                      needTrailing: false,
+                      onTap: () {
+                        showLogoutDialog(context);
+                      },
                     ),
                   ],
                 ),

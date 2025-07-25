@@ -10,6 +10,10 @@ class CustomPadding {
   static const double paddingTiny = 2;
 }
 
+class CustomFont {
+  static const String intelOneMono = 'IntelOneMono';
+}
+
 class CustomGap {
   static final gap = Gap(CustomPadding.padding);
   static final gapLarge = Gap(CustomPadding.paddingLarge);
@@ -26,11 +30,14 @@ class CustomDuration {
 
 class CustomColors {
   // === Light Theme Colors ===
+
+  static const textFormFilledColor = Color.fromARGB(255, 173, 173, 173);
   static const primaryColor = Color(0xFF3AB54A);
   static const secondaryColor = Color(0xFFFEE440);
   static const tertiaryColor = Color(0xFFF0F0F0);
 
   static const backgroundColor = Color(0xFFf1F1F1);
+  static const lightDarkColor = Color(0xff303030);
   static const textColor = Color(0xFF000000);
   static const textColorLight = Color(0xFFFFFFFF);
   static const textColorDark = Color(0xFF000000);
@@ -42,6 +49,7 @@ class CustomColors {
   static const scaffoldRed = Colors.red;
 
   // === Dark Theme Colors ===
+  static const textFormFilledColorDark = Color.fromARGB(255, 172, 170, 170);
   static const kDarkScaffold = Color(0xFF0D0D0D);
   static const kDarkAppBar = Color(0xFF1F1F1F);
   static const kDarkDrawer = Color(0xFF1E1E1E);
@@ -53,6 +61,7 @@ class CustomColors {
   static final kDarkDividerColor = Colors.grey[800];
   static final kDarkdynamicIconColor = Colors.white;
   static final kSecondaryDark = Color(0xff303030);
+  static final darkBackgroundColor = Color(0xff1b1b1b);
   static final green = Colors.green;
 
   // === Gradients ===

@@ -1,4 +1,5 @@
 import 'package:attea/features/authentication_screen/view/login_page.dart';
+import 'package:attea/features/employee_screen/view/add_employee_screen.dart';
 
 import '/features/example_pages/features_example.dart';
 
@@ -20,16 +21,10 @@ class AppRoutes {
 
     switch (uri.path) {
       case SplashScreen.path:
-        return pageRoute(
-          settings,
-          const SplashScreen(),
-        );
+        return pageRoute(settings, const SplashScreen());
 
       case LandingPage.path:
-        return pageRoute(
-          settings,
-          const LandingPage(),
-        );
+        return pageRoute(settings, const LandingPage());
 
       case AuthPage.path:
         return PageTransition(
@@ -38,7 +33,7 @@ class AppRoutes {
           child: AuthPage(),
           duration: const Duration(milliseconds: 400),
         );
-        case LoginPage.path:
+      case LoginPage.path:
         return PageTransition(
           childCurrent: const LandingPage(),
           type: PageTransitionType.sharedAxisHorizontal,
@@ -46,13 +41,18 @@ class AppRoutes {
           duration: const Duration(milliseconds: 400),
         );
       case FeaturesExample.path:
-         return pageRoute(settings, FeaturesExample())  ;
+        return pageRoute(settings, FeaturesExample());
+      case AddEmployeeScreen.path:
+        return pageRoute(settings, AddEmployeeScreen());
+
       case NavigationScreen.path:
         return PageTransition(
-            duration: const Duration(milliseconds: 800),
-            type: PageTransitionType.rightToLeftWithFade,
-            child: const NavigationScreen(),
-            settings: settings);
+          duration: const Duration(milliseconds: 800),
+          type: PageTransitionType.rightToLeftWithFade,
+          child: const NavigationScreen(),
+          settings: settings,
+        );
+
       // case AuthPage.path:
       //   return pageRoute(settings, const AuthPage());
 

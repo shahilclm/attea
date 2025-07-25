@@ -72,7 +72,7 @@ class MyAppState extends State<MyApp> {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: [Locale('en', ''), Locale('ml', '')],
-        debugShowCheckedModeBanner: true,
+        debugShowCheckedModeBanner: false,
         navigatorKey: navigatorKey,
         initialRoute: SplashScreen.path,
         onGenerateRoute: AppRoutes.onGenerateRoute,

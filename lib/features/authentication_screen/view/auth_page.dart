@@ -45,21 +45,8 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   void initState() {
-    // fetchAndSetPhoneNumber();
-    // TODO: implement initState
     super.initState();
   }
-
-  // Future<void> fetchAndSetPhoneNumber() async {
-  //   final number = await PhoneNumberHint.getPhoneNumber();
-  //   if (number != null && mounted) {
-  //     setState(() {
-  //       phoneController.text = number.replaceAll('+91', '').trim();
-  //       fullPhoneNumber = number.trim();
-  //       isPhoneValid = true;
-  //     });
-  //   }
-  // }
 
   Future<void> _signUp() async {
     final email = _emailController.text.trim();
@@ -272,41 +259,7 @@ class _AuthPageState extends State<AuthPage> {
             },
             obscureText: _obscureConfirmPassword,
           ),
-          // Container(
-          //   height: 50.v,
-          //   decoration: BoxDecoration(
-          //     borderRadius: BorderRadius.circular(CustomPadding.paddingXL),
-          //     color: CustomColors.textfieldphoneColors,
-          //   ),
-          //   child: IntlPhoneField(
-          //     controller: phoneController,
-          //     onChanged: (phone) {
-          //       fullPhoneNumber = phone.completeNumber;
 
-          //       setState(() {
-          //         isPhoneValid = phone.number.length == 10;
-          //       });
-          //     },
-          //     textAlignVertical: TextAlignVertical.center,
-          //     autovalidateMode: AutovalidateMode.disabled,
-          //     inputFormatters: [],
-          //     disableAutoFillHints: false,
-          //     disableLengthCheck: false,
-          //     initialCountryCode: 'IN',
-          //     style: TextStyle(
-          //       color: Colors.black,
-          //       fontSize: 14.v,
-          //       fontWeight: FontWeight.w500,
-          //     ),
-          //     decoration: InputDecoration(
-          //       hintStyle: TextStyle(color: CustomColors.textColorLightGrey),
-          //       counter: SizedBox(),
-          //       hintText: 'Enter Phone Number',
-          //       border: InputBorder.none,
-          //     ),
-          //     dropdownIcon: Icon(Icons.arrow_drop_down),
-          //   ),
-          // ),
           Gap(CustomPadding.paddingXL),
           MiniLoadingButton(
             borderRadius: CustomPadding.paddingXL,
@@ -316,53 +269,6 @@ class _AuthPageState extends State<AuthPage> {
             },
             size: ButtonSize.medium,
           ),
-          // LoadingButton(
-          //   maxWidth: double.maxFinite,
-          //   buttonLoading: false,
-          //   text: 'Proceed',
-          //   onPressed: isPhoneValid
-          //       ? () {
-          //           setState(() {
-          //             isOtpStage = true;
-          //           });
-          //         }
-          //       : () {
-          //           Fluttertoast.showToast(
-          //             msg: "Please enter a valid phone number.",
-          //             toastLength: Toast.LENGTH_SHORT,
-          //             gravity: ToastGravity.CENTER,
-          //             backgroundColor: CustomColors.scaffoldRed,
-          //             textColor: Colors.white,
-          //             fontSize: 14.0,
-          //           );
-          //         },
-          // ),
-          // Gap(CustomPadding.paddingLarge),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     Text(
-          //       "OR",
-          //       style: TextStyle(
-          //         fontSize: 16.v,
-          //         fontStyle: FontStyle.italic,
-          //         fontWeight: FontWeight.w500,
-          //         color: CustomColors.textColorLightGrey,
-          //       ),
-          //     ),
-          //   ],
-          // ),
-          // Divider(),
-          // Gap(CustomPadding.padding),
-          // Row(
-          //   spacing: CustomPadding.paddingLarge,
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     SocialMediaAuthButton(assetPath: Assets.svg.google),
-          //     SocialMediaAuthButton(assetPath: Assets.svg.facebook),
-          //     SocialMediaAuthButton(assetPath: Assets.svg.gmail),
-          //   ],
-          // ),
         ],
       ),
     );
@@ -374,15 +280,15 @@ class _AuthPageState extends State<AuthPage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CustomGap.gapXL,
-        // Gap(CustomPadding.paddingXL),
+
         Text(
           "Enter OTP",
           style: TextStyle(fontSize: 16.v, fontWeight: FontWeight.w500),
         ),
-        // Gap(CustomPadding.paddingXL),
+
         CustomGap.gapXL,
         Pinput(length: 6, closeKeyboardWhenCompleted: true),
-        // Gap(CustomPadding.paddingXL),
+
         CustomGap.gapXL,
         LoadingButton(
           maxWidth: double.maxFinite,

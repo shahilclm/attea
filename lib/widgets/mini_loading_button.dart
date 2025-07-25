@@ -1,7 +1,8 @@
+import 'package:gap/gap.dart';
+
 import '/exporter/exporter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 
 enum ButtonSize {
   small,
@@ -52,9 +53,13 @@ class MiniLoadingButton extends StatelessWidget {
     this.size = ButtonSize.small,
     this.backgroundColor = const Color(0xFF007BFF),
     this.textColor = Colors.white,
-    this.borderRadius = 8,
+    this.borderRadius = 12,
+    this.prefixIcon,
+    this.needRow = false,
+    this.fontFamily,
   });
-
+  final bool needRow;
+  final Widget? prefixIcon;
   final String text;
   final VoidCallback onPressed;
   final bool isLoading;
@@ -63,23 +68,22 @@ class MiniLoadingButton extends StatelessWidget {
   final Color backgroundColor;
   final Color textColor;
   final double borderRadius;
+  final String? fontFamily;
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      cursor:
-          enabled && !isLoading
-              ? SystemMouseCursors.click
-              : SystemMouseCursors.basic,
+      cursor: enabled && !isLoading
+          ? SystemMouseCursors.click
+          : SystemMouseCursors.basic,
       child: GestureDetector(
-        onTap:
-            enabled && !isLoading
-                ? () {
-                  HapticFeedback.lightImpact();
-                  FocusScope.of(context).unfocus();
-                  onPressed();
-                }
-                : null,
+        onTap: enabled && !isLoading
+            ? () {
+                HapticFeedback.lightImpact();
+                FocusScope.of(context).unfocus();
+                onPressed();
+              }
+            : null,
         child: Container(
           width: size.width.h,
           height: size.height.h,
@@ -88,24 +92,35 @@ class MiniLoadingButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(borderRadius),
           ),
           child: Center(
-            child:
-                isLoading
-                    ? SizedBox(
-                      width: 18.h,
-                      height: 18.h,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2.adaptSize,
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                      ),
-                    )
-                    : Text(
-                      text,
-                      style: TextStyle(
-                        fontSize: size.fontSize.fSize,
-                        fontWeight: FontWeight.w600,
-                        color: textColor,
-                      ),
+            child: isLoading
+                ? SizedBox(
+                    width: 18.h,
+                    height: 18.h,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2.adaptSize,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                     ),
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ?needRow
+                          ? prefixIcon
+                          : SizedBox(), // Return SizedBox() if `needRow` is false
+                      needRow
+                          ? Gap(CustomPadding.paddingLarge)
+                          : SizedBox(), // Return SizedBox() if `needRow` is false
+                      Text(
+                        text,
+                        style: TextStyle(
+                          fontSize: size.fontSize.fSize,
+                          fontWeight: FontWeight.w600,
+                          color: textColor,
+                          fontFamily: fontFamily,
+                        ),
+                      ),
+                    ],
+                  ),
           ),
         ),
       ),

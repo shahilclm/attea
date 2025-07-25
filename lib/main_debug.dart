@@ -25,7 +25,5 @@ await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);  
   String api = BaseUrlConstant.getBaseUrl(ApiType.baseUrl);
   logWarning('Calling API: $api');
 
-  runApp(MyApp(
-    key: appKey,
-  ));
+  runApp(MyApp(key: appKey));
 }

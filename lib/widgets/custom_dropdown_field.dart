@@ -24,21 +24,43 @@ class CustomDropdownField<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(CustomPadding.paddingLarge),
+      padding: const EdgeInsets.all(0),
       child: DropdownButtonFormField<T>(
+        padding: EdgeInsets.symmetric(horizontal: CustomPadding.paddingXL),
         value: value,
         isExpanded: isExpanded,
         decoration: InputDecoration(
           isDense: true,
-          labelText: label,
+          // labelText: label,
           hintText: hintText,
           border: const OutlineInputBorder(),
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 12,
+            vertical: 14,
+          ),
         ),
         items: items,
         onChanged: onChanged,
         validator: validator,
+        dropdownColor: CustomColors.textColorGrey,
+        style: TextStyle(
+          color: CustomColors.textColorLight,
+          fontFamily: CustomFont.intelOneMono,
+          fontSize: 18,
+        ),
+        selectedItemBuilder: (BuildContext context) {
+          return items.map<Widget>((DropdownMenuItem<T> item) {
+            return Text(
+              item.value.toString(),
+              style: TextStyle(
+                color: CustomColors
+                    .textColorDark, // Custom color for the selected text
+                fontSize: 18,
+                fontFamily: CustomFont.intelOneMono,
+              ),
+            );
+          }).toList();
+        },
       ),
     );
   }

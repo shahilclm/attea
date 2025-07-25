@@ -3,9 +3,12 @@ import 'package:attea/features/authentication_screen/service/auth_service.dart';
 import 'package:attea/widgets/common_textfield.dart';
 import 'package:attea/widgets/mini_loading_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:gaimon/gaimon.dart';
 
+import '../../../extensions/app_theme_extensions.dart';
 import '/core/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -33,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final bool _isLoading = false;
+  bool _isLoading = false;
   bool _obscurePassword = true;
 
   final AuthService _authService = AuthService();
@@ -49,16 +52,24 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> _login() async {
+    setState(() {
+      _isLoading = true;
+    });
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
 
     if (email.isEmpty || password.isEmpty) {
+      Gaimon.error();
+      // HapticFeedback.heavyImpact;
+      setState(() {
+        _isLoading = false;
+      });
+
       Fluttertoast.showToast(
         msg: 'Email and password are required',
         backgroundColor: CustomColors.scaffoldRed,
         gravity: ToastGravity.TOP,
       );
-      return;
     }
 
     try {
@@ -71,10 +82,16 @@ class _LoginPageState extends State<LoginPage> {
       );
       if (!mounted) return;
       Navigator.pushNamed(context, NavigationScreen.path);
+      setState(() {
+        _isLoading = false;
+      });
 
       // TODO: Navigate to dashboard or save token
       // Navigator.pushNamed(context, NavigationScreen.path);
     } on FirebaseAuthException catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
       final message = AuthException.getFriendlyError(e);
       Fluttertoast.showToast(
         msg: message,
@@ -92,6 +109,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    // appColor =
+    final appColors = Theme.of(context).extension<AppThemeColors>()!;
     return Scaffold(
       body: Stack(
         children: [
@@ -102,6 +121,7 @@ class _LoginPageState extends State<LoginPage> {
               Text(
                 "Welcome back!",
                 style: TextStyle(
+                  color: appColors.textContrastColor,
                   fontSize: 24.fSize,
                   fontWeight: FontWeight.bold,
                 ),
@@ -124,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
               },
               icon: Icon(
                 Icons.arrow_back_ios_new,
-                color: Colors.black,
+                color: appColors.dynamicIconColor,
                 size: 20.v,
               ),
             ),
@@ -134,15 +154,16 @@ class _LoginPageState extends State<LoginPage> {
       bottomSheet: Container(
         padding: EdgeInsets.symmetric(horizontal: CustomPadding.paddingXL),
         decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: CustomColors.textColor.withAlpha(25),
-              blurRadius: 10,
-              spreadRadius: 10,
-              offset: Offset(0, -3),
-            ),
-          ],
-          color: CustomColors.backgroundColor,
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: CustomColors.textColor.withAlpha(25),
+          //     blurRadius: 10,
+          //     spreadRadius: 10,
+          //     offset: Offset(0, -3),
+          //   ),
+          // ],
+          color: appColors.background.withValues(alpha: 225),
+          // color: CustomColors.backgroundColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(CustomPadding.paddingXL),
             topRight: Radius.circular(CustomPadding.paddingXL),
@@ -193,7 +214,7 @@ class _LoginPageState extends State<LoginPage> {
           Gap(CustomPadding.paddingLarge),
           CommonTextfield(
             controller: _emailController,
-            elevation: 21,
+            elevation: 1,
             hintText: 'Email',
             keyboardType: TextInputType.emailAddress,
             prefixIcon: Icons.email_outlined,
@@ -201,7 +222,7 @@ class _LoginPageState extends State<LoginPage> {
           Gap(CustomPadding.paddingLarge),
           CommonTextfield(
             controller: _passwordController,
-            elevation: 21,
+            elevation: 1,
 
             hintText: 'Password',
             keyboardType: TextInputType.emailAddress,
@@ -221,10 +242,13 @@ class _LoginPageState extends State<LoginPage> {
 
           Gap(CustomPadding.paddingXL),
           MiniLoadingButton(
+            isLoading: _isLoading,
             borderRadius: CustomPadding.paddingXL,
             text: 'Login',
             onPressed: () {
-              if (_formKey.currentState!.validate()) _login();
+              if (_formKey.currentState!.validate()) {
+                _login();
+              }
             },
             size: ButtonSize.medium,
           ),

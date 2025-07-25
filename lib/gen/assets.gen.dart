@@ -9,16 +9,6 @@
 
 import 'package:flutter/widgets.dart';
 
-class $AssetsFontsGen {
-  const $AssetsFontsGen();
-
-  /// File path: assets/fonts/IntelOneMono-Regular.ttf
-  String get intelOneMonoRegular => 'assets/fonts/IntelOneMono-Regular.ttf';
-
-  /// List of all assets
-  List<String> get values => [intelOneMonoRegular];
-}
-
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
@@ -100,7 +90,6 @@ class $AssetsSvgGen {
 class Assets {
   const Assets._();
 
-  static const $AssetsFontsGen fonts = $AssetsFontsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsLottiesGen lotties = $AssetsLottiesGen();
   static const $AssetsPngGen png = $AssetsPngGen();

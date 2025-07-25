@@ -23,6 +23,7 @@ class CommonTextfield extends StatelessWidget {
   final bool readOnly;
   final TextInputAction? textInputAction;
   final void Function(String)? onFieldSubmitted;
+
   const CommonTextfield({
     super.key,
     this.prefixIcon,
@@ -78,27 +79,31 @@ class CommonTextfield extends StatelessWidget {
           validator: validator,
           decoration: InputDecoration(
             border: OutlineInputBorder(),
-            fillColor: appColors.background.withValues(alpha: 0.5),
+            // fillColor: appColors.background.withValues(alpha: 0.5),
             prefixIcon: Icon(
               prefixIcon,
               color: appColors.textContrastColor.withValues(alpha: 0.5),
             ),
-            suffixIcon:sufixIcon != null
-    ? Padding(
-              padding: EdgeInsets.only(right: CustomPadding.paddingLarge),
-              child: IconButton(
-                onPressed: onSuffixTap,
-                icon: Icon(
-                  sufixIcon,
-                  color: appColors.dynamicIconColor.withValues(alpha: 0.5),
-                ),
-              ),
-            ):null,
+            suffixIcon: sufixIcon != null
+                ? Padding(
+                    padding: EdgeInsets.only(right: CustomPadding.paddingLarge),
+                    child: IconButton(
+                      onPressed: onSuffixTap,
+                      icon: Icon(
+                        sufixIcon,
+                        color: appColors.dynamicIconColor.withValues(
+                          alpha: 0.5,
+                        ),
+                      ),
+                    ),
+                  )
+                : null,
 
             hintText: hintText,
             hintStyle: TextStyle(
               color: appColors.dynamicIconColor.withValues(alpha: 0.5),
               fontWeight: FontWeight.w500,
+              fontFamily: CustomFont.intelOneMono,
             ),
           ),
         ),
