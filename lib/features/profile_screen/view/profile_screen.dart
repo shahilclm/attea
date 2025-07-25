@@ -21,7 +21,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     logError("⚠️ ProfileScreen build called");
     final appColors = Theme.of(context).extension<AppThemeColors>()!;
     return Scaffold(
-      backgroundColor: CustomColors.lightDarkColor,
+      backgroundColor: appColors.background,
       // appBar: AppBar(
       //   backgroundColor: appColors.background,
       //   title: Text(
@@ -55,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 style: context.headlineLarge.copyWith(
                   fontFamily: 'IntelOneMono',
                   fontSize: 20.fSize,
-                  color: CustomColors.textColorLight,
+                  color: appColors.textContrastColor,
                 ),
               ),
               Text(

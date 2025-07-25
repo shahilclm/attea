@@ -1,4 +1,3 @@
-import 'package:attea/constants/constants.dart';
 import 'package:attea/exporter/exporter.dart';
 import 'package:flutter/material.dart';
 

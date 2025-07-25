@@ -23,6 +23,7 @@ class CommonTextfield extends StatelessWidget {
   final bool readOnly;
   final TextInputAction? textInputAction;
   final void Function(String)? onFieldSubmitted;
+  final Color? fillColor;
 
   const CommonTextfield({
     super.key,
@@ -46,6 +47,7 @@ class CommonTextfield extends StatelessWidget {
     this.textInputAction,
     this.onFieldSubmitted,
     this.elevation = 1,
+    this.fillColor,
   });
 
   @override
@@ -79,7 +81,7 @@ class CommonTextfield extends StatelessWidget {
           validator: validator,
           decoration: InputDecoration(
             border: OutlineInputBorder(),
-            // fillColor: appColors.background.withValues(alpha: 0.5),
+            fillColor: fillColor,
             prefixIcon: Icon(
               prefixIcon,
               color: appColors.textContrastColor.withValues(alpha: 0.5),

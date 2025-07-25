@@ -1,6 +1,5 @@
 import '/constants/constants.dart';
 import '/extensions/app_theme_extensions.dart';
-import '/extensions/font_extension.dart';
 import '/widgets/carousel_view_widget.dart';
 import 'package:flutter/material.dart';
 

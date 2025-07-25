@@ -1,5 +1,6 @@
 import 'package:attea/features/authentication_screen/view/login_page.dart';
 import 'package:attea/features/employee_screen/view/add_employee_screen.dart';
+import 'package:attea/features/employee_screen/view/employee_details_screen.dart';
 
 import '/features/example_pages/features_example.dart';
 
@@ -44,6 +45,11 @@ class AppRoutes {
         return pageRoute(settings, FeaturesExample());
       case AddEmployeeScreen.path:
         return pageRoute(settings, AddEmployeeScreen());
+       case EmployeeDetailsScreen.path: 
+       return pageRoute(
+          settings,
+          EmployeeDetailsScreen(),
+        );
 
       case NavigationScreen.path:
         return PageTransition(

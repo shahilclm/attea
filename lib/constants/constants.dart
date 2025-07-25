@@ -32,7 +32,7 @@ class CustomColors {
   // === Light Theme Colors ===
 
   static const textFormFilledColor = Color.fromARGB(255, 173, 173, 173);
-  static const primaryColor = Color(0xFF3AB54A);
+  static const primaryColor = Color.fromARGB(255, 36, 116, 201);
   static const secondaryColor = Color(0xFFFEE440);
   static const tertiaryColor = Color(0xFFF0F0F0);
 

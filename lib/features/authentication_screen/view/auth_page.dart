@@ -216,7 +216,7 @@ class _AuthPageState extends State<AuthPage> {
           Gap(CustomPadding.paddingLarge),
           CommonTextfield(
             controller: _emailController,
-            elevation: 21,
+            elevation: 1,
             hintText: 'Email',
             keyboardType: TextInputType.emailAddress,
             prefixIcon: Icons.email_outlined,
@@ -224,7 +224,7 @@ class _AuthPageState extends State<AuthPage> {
           Gap(CustomPadding.paddingLarge),
           CommonTextfield(
             controller: _passwordController,
-            elevation: 21,
+            elevation: 1,
 
             hintText: 'Password',
             keyboardType: TextInputType.emailAddress,
@@ -244,7 +244,7 @@ class _AuthPageState extends State<AuthPage> {
           Gap(CustomPadding.paddingLarge),
           CommonTextfield(
             controller: _confirmPassword,
-            elevation: 21,
+            elevation: 1,
 
             hintText: 'Confirm Password',
             keyboardType: TextInputType.emailAddress,

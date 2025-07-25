@@ -1,10 +1,7 @@
 import '/exporter/exporter.dart';
 import '/extensions/app_theme_extensions.dart';
-import '/gen/assets.gen.dart';
-import '/services/size_utils.dart';
 import '/widgets/mini_loading_button.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../widgets/chill_guy_widget.dart';
 

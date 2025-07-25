@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '/features/landing_screen/landing_page.dart';
 import '/features/navigation_screen/navigation_screen.dart';
 
-import '../../services/shared_pref_services.dart';
 import '/exporter/exporter.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_animate/flutter_animate.dart';

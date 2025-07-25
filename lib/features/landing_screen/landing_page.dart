@@ -7,7 +7,6 @@ import '/services/size_utils.dart';
 import '/constants/constants.dart';
 import '/features/authentication_screen/view/auth_page.dart';
 import '/gen/assets.gen.dart';
-import '/widgets/loading_button.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

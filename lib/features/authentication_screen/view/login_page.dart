@@ -3,9 +3,7 @@ import 'package:attea/features/authentication_screen/service/auth_service.dart';
 import 'package:attea/widgets/common_textfield.dart';
 import 'package:attea/widgets/mini_loading_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import 'package:gaimon/gaimon.dart';
 
 import '../../../extensions/app_theme_extensions.dart';
