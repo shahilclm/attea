@@ -8,6 +8,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import '../../extensions/app_theme_extensions.dart';
 import '../../main.dart';
 import '/exporter/exporter.dart';
+import 'widgets/dashboard_container.dart';
 
 class HomeScreen extends StatefulWidget {
   final VoidCallback openDrawer;
@@ -138,41 +139,33 @@ class _HomeScreenState extends State<HomeScreen> {
             Gap(CustomPadding.padding),
             Row(
               children: [
-                Expanded(
-                  child: DashboardContainer(
-                    title: 'Check In',
-                    icon: LucideIcons.logIn,
-                    count: 20,
-                    appColors: appColors,
-                  ),
+                DashboardContainer(
+                  title: 'Check In',
+                  icon: LucideIcons.logIn,
+                  count: 20,
+                  appColors: appColors,
                 ),
-                Expanded(
-                  child: DashboardContainer(
-                    title: 'Check Out',
-                    icon: LucideIcons.logOut,
-                    appColors: appColors,
-                  ),
+                DashboardContainer(
+                  title: 'Check Out',
+                  icon: LucideIcons.logOut,
+                  appColors: appColors,
                 ),
               ],
             ),
             Gap(CustomPadding.paddingLarge),
             Row(
               children: [
-                Expanded(
-                  child: DashboardContainer(
-                    title: 'Leave',
-                    icon: Icons.person_off,
-                    count: 20,
-                    appColors: appColors,
-                  ),
+                DashboardContainer(
+                  title: 'Leave',
+                  icon: Icons.person_off,
+                  count: 20,
+                  appColors: appColors,
                 ),
 
-                Expanded(
-                  child: DashboardContainer(
-                    title: 'Employees',
-                    icon: LucideIcons.users,
-                    appColors: appColors,
-                  ),
+                DashboardContainer(
+                  title: 'Employees',
+                  icon: LucideIcons.users,
+                  appColors: appColors,
                 ),
               ],
             ),
@@ -203,75 +196,5 @@ class _HomeScreenState extends State<HomeScreen> {
   String _getDayAbbr(int weekday) {
     const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
     return days[weekday - 1];
-  }
-}
-
-class DashboardContainer extends StatelessWidget {
-  final String title;
-  final IconData? icon;
-  final int count;
-  const DashboardContainer({
-    super.key,
-    required this.appColors,
-    required this.title,
-    this.icon,
-    this.count = 0,
-  });
-
-  final AppThemeColors appColors;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(CustomPadding.paddingLarge),
-      margin: EdgeInsets.symmetric(
-        horizontal: CustomPadding.paddingSmall + CustomPadding.paddingTiny,
-      ),
-
-      // height: 140.h,
-      decoration: BoxDecoration(
-        color: appColors.secondaryColor,
-        borderRadius: BorderRadius.circular(CustomPadding.paddingLarge),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            children: [
-              Container(
-                // width: 35.v,
-                // height: 35.v,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                    CustomPadding.padding + CustomPadding.paddingSmall,
-                  ),
-                  color: CustomColors.primaryColor.withAlpha(40),
-                ),
-                child: Icon(icon, color: appColors.primary),
-              ),
-              Gap(CustomPadding.paddingLarge),
-              Text(
-                title,
-                style: TextStyle(
-                  fontFamily: CustomFont.intelOneMono,
-                  fontSize: 18.fSize,
-                  color: appColors.textContrastColor,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-            ],
-          ),
-          Text(
-            count.toString(),
-            style: TextStyle(
-              fontSize: 30.fSize,
-              fontFamily: CustomFont.intelOneMono,
-              fontWeight: FontWeight.w900,
-              color: appColors.textContrastColor,
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }
