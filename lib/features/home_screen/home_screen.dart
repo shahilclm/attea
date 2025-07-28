@@ -65,13 +65,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 itemBuilder:
                     (context, date, isSelected, isDisabled, isToday, onTap) {
-
-
-
-                    if(isSelected)
-                      logSuccess(
-                        'Selected date: $date, isSelected: $isSelected, isToday: $isToday',
-                      );
+                      if (isSelected)
+                        logSuccess(
+                          'Selected date: $date, isSelected: $isSelected, isToday: $isToday',
+                        );
 
                       return GestureDetector(
                         onTap: onTap,
@@ -230,8 +227,8 @@ class DashboardContainer extends StatelessWidget {
       margin: EdgeInsets.symmetric(
         horizontal: CustomPadding.paddingSmall + CustomPadding.paddingTiny,
       ),
-      height: 140.h,
 
+      // height: 140.h,
       decoration: BoxDecoration(
         color: appColors.secondaryColor,
         borderRadius: BorderRadius.circular(CustomPadding.paddingLarge),
@@ -242,8 +239,8 @@ class DashboardContainer extends StatelessWidget {
           Row(
             children: [
               Container(
-                width: 35.v,
-                height: 35.v,
+                // width: 35.v,
+                // height: 35.v,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(
                     CustomPadding.padding + CustomPadding.paddingSmall,
