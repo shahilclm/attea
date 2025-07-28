@@ -95,6 +95,8 @@ dependencies:
   firebase_storage: ^12.4.10
   flutter_image_compress: ^2.4.0
   image: ^4.5.4
+  shimmer: ^3.0.0
+  easy_date_timeline: ^2.0.9
 
 dev_dependencies:
   flutter_test:

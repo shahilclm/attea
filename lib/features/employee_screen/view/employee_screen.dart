@@ -4,6 +4,7 @@ import 'package:attea/features/employee_screen/services/employee_service.dart';
 import 'package:attea/features/employee_screen/models/employee_model.dart';
 import 'package:attea/features/employee_screen/view/add_employee_screen.dart';
 import 'package:attea/features/employee_screen/view/employee_details_screen.dart';
+import 'package:attea/services/text_caps.dart';
 import 'package:attea/widgets/common_textfield.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -196,7 +197,8 @@ class _EmployeeScreenState extends State<EmployeeScreen>
                                 : null,
                           ),
                           title: Text(
-                            employee.name,
+                            TextCaps.toTitleCase(employee.name),
+
                             style: TextStyle(
                               color: appColors.textContrastColor,
                               fontSize: 20,

@@ -68,6 +68,32 @@ class EmployeeService {
     }
   }
 
+
+  Future<void> updateEmployeeData(Employee employee) async {
+    try {
+      final employeeData = employee.toMap();
+
+      await _firestore.collection('employees').doc(employee.employeeId).update({
+        ...employeeData,
+        'updatedAt': FieldValue.serverTimestamp(),
+      });
+
+      logSuccess("Employee data updated successfully!");
+    } catch (e) {
+      logError('Error updating employee data: $e');
+      throw Exception('Failed to update employee data: $e');
+    }
+  }
+
+  Future<void> deleteEmployee(Employee employee) async{
+    try{
+      await _firestore.collection('employees').doc(employee.employeeId).delete();
+
+    }catch(e){
+      throw Exception('Failed to delete employee:$e');
+    }
+  }
+
   Future<Employee?> getEmployeeById(String employeeId) async {
     try {
       final docSnapshot = await _firestore
