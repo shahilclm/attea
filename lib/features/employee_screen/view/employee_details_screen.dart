@@ -46,7 +46,7 @@ class EmployeeDetailsScreen extends StatelessWidget {
               fontFamily: CustomFont.intelOneMono,
             ),
           ),
-  //TODO : GAP 
+          //TODO : GAP
           Expanded(
             child: ListView.builder(
               itemCount: 5,
