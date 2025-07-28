@@ -5,21 +5,20 @@ import 'package:attea/widgets/mini_loading_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gaimon/gaimon.dart';
-
-import '../../../extensions/app_theme_extensions.dart';
-import '/core/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pinput/pinput.dart';
 
+import '../../../extensions/app_theme_extensions.dart';
+import '../../../services/shared_pref_services.dart';
+import '../controllers/login_controllers.dart';
 import '/constants/constants.dart';
+import '/core/logger.dart';
 import '/features/navigation_screen/navigation_screen.dart';
 import '/gen/assets.gen.dart';
 import '/services/size_utils.dart';
 import '/widgets/loading_button.dart';
-
-import '../../../services/shared_pref_services.dart';
 
 class LoginPage extends StatefulWidget {
   static const String path = '/loginpage';
@@ -31,9 +30,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final LoginFormController formController = LoginFormController();
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+
   bool _isLoading = false;
   bool _obscurePassword = true;
 
@@ -42,32 +41,31 @@ class _LoginPageState extends State<LoginPage> {
   bool isOtpStage = false;
   String fullPhoneNumber = '';
   bool isPhoneValid = false;
-  final TextEditingController phoneController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
+  void dispose() {
+    formController.dispose();
+    super.dispose();
   }
 
   Future<void> _login() async {
     setState(() {
       _isLoading = true;
     });
-    final email = _emailController.text.trim();
-    final password = _passwordController.text.trim();
+
+    final email = formController.emailController.text.trim();
+    final password = formController.passwordController.text.trim();
 
     if (email.isEmpty || password.isEmpty) {
       Gaimon.error();
-      // HapticFeedback.heavyImpact;
-      setState(() {
-        _isLoading = false;
-      });
+      setState(() => _isLoading = false);
 
       Fluttertoast.showToast(
         msg: 'Email and password are required',
         backgroundColor: CustomColors.scaffoldRed,
         gravity: ToastGravity.TOP,
       );
+      return;
     }
 
     try {
@@ -78,18 +76,10 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: CustomColors.green,
         gravity: ToastGravity.TOP,
       );
+
       if (!mounted) return;
       Navigator.pushNamed(context, NavigationScreen.path);
-      setState(() {
-        _isLoading = false;
-      });
-
-      // TODO: Navigate to dashboard or save token
-      // Navigator.pushNamed(context, NavigationScreen.path);
     } on FirebaseAuthException catch (e) {
-      setState(() {
-        _isLoading = false;
-      });
       final message = AuthException.getFriendlyError(e);
       Fluttertoast.showToast(
         msg: message,
@@ -102,13 +92,109 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: CustomColors.scaffoldRed,
         gravity: ToastGravity.TOP,
       );
+    } finally {
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
     }
+  }
+
+  Future<void> saveToken() async {
+    await SharedPreferencesService.i.setValue(
+      key: 'token',
+      value: 'sampleValue',
+    );
+
+    final token = SharedPreferencesService.i.getValue(key: 'token');
+    logWarning('Token saved successfully $token');
+  }
+
+  Widget buildPhoneNumberInput({Key? key}) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        key: key,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Gap(CustomPadding.paddingLarge),
+          Gap(CustomPadding.paddingLarge),
+
+          CommonTextfield(
+            controller: formController.emailController,
+            elevation: 1,
+            hintText: 'Email',
+            keyboardType: TextInputType.emailAddress,
+            prefixIcon: Icons.email_outlined,
+          ),
+
+          Gap(CustomPadding.paddingLarge),
+
+          CommonTextfield(
+            controller: formController.passwordController,
+            elevation: 1,
+            hintText: 'Password',
+            keyboardType: TextInputType.visiblePassword,
+            prefixIcon: Icons.key,
+            obscureText: _obscurePassword,
+            sufixIcon: _obscurePassword
+                ? Icons.visibility_off
+                : Icons.visibility,
+            onSuffixTap: () {
+              setState(() {
+                _obscurePassword = !_obscurePassword;
+              });
+            },
+          ),
+
+          Gap(CustomPadding.paddingLarge),
+          Gap(CustomPadding.paddingXL),
+
+          MiniLoadingButton(
+            isLoading: _isLoading,
+            borderRadius: CustomPadding.paddingXL,
+            text: 'Login',
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                _login();
+              }
+            },
+            size: ButtonSize.medium,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildOtpInput({Key? key}) {
+    return Column(
+      key: key,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        CustomGap.gapXL,
+        Text(
+          "Enter OTP",
+          style: TextStyle(fontSize: 16.v, fontWeight: FontWeight.w500),
+        ),
+        CustomGap.gapXL,
+        Pinput(length: 6, closeKeyboardWhenCompleted: true),
+        CustomGap.gapXL,
+        LoadingButton(
+          maxWidth: double.maxFinite,
+          buttonLoading: false,
+          text: 'Verify OTP',
+          onPressed: () {
+            saveToken();
+            Navigator.pushNamed(context, NavigationScreen.path);
+          },
+        ),
+      ],
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    // appColor =
     final appColors = Theme.of(context).extension<AppThemeColors>()!;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -152,16 +238,7 @@ class _LoginPageState extends State<LoginPage> {
       bottomSheet: Container(
         padding: EdgeInsets.symmetric(horizontal: CustomPadding.paddingXL),
         decoration: BoxDecoration(
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: CustomColors.textColor.withAlpha(25),
-          //     blurRadius: 10,
-          //     spreadRadius: 10,
-          //     offset: Offset(0, -3),
-          //   ),
-          // ],
           color: appColors.background.withValues(alpha: 225),
-          // color: CustomColors.backgroundColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(CustomPadding.paddingXL),
             topRight: Radius.circular(CustomPadding.paddingXL),
@@ -183,105 +260,10 @@ class _LoginPageState extends State<LoginPage> {
             );
           },
           child: isOtpStage
-              ? buildOtpInput(key: ValueKey('otp'))
-              : buildPhoneNumberInput(key: ValueKey('phone')),
+              ? buildOtpInput(key: const ValueKey('otp'))
+              : buildPhoneNumberInput(key: const ValueKey('phone')),
         ),
       ),
-    );
-  }
-
-  Future<void> saveToken() async {
-    await SharedPreferencesService.i.setValue(
-      key: 'token',
-      value: 'sampleValue',
-    );
-
-    final token = SharedPreferencesService.i.getValue(key: 'token');
-
-    logWarning('Token saved successfully $token');
-  }
-
-  Widget buildPhoneNumberInput({Key? key}) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        key: key,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Gap(CustomPadding.paddingLarge),
-          Gap(CustomPadding.paddingLarge),
-          CommonTextfield(
-            controller: _emailController,
-            elevation: 1,
-            hintText: 'Email',
-            keyboardType: TextInputType.emailAddress,
-            prefixIcon: Icons.email_outlined,
-          ),
-          Gap(CustomPadding.paddingLarge),
-          CommonTextfield(
-            controller: _passwordController,
-            elevation: 1,
-
-            hintText: 'Password',
-            keyboardType: TextInputType.emailAddress,
-            prefixIcon: Icons.key,
-            sufixIcon: _obscurePassword
-                ? Icons.visibility_off
-                : Icons.visibility,
-            onSuffixTap: () {
-              setState(() {
-                _obscurePassword = !_obscurePassword;
-              });
-            },
-
-            obscureText: _obscurePassword,
-          ),
-          Gap(CustomPadding.paddingLarge),
-
-          Gap(CustomPadding.paddingXL),
-          MiniLoadingButton(
-            isLoading: _isLoading,
-            borderRadius: CustomPadding.paddingXL,
-            text: 'Login',
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                _login();
-              }
-            },
-            size: ButtonSize.medium,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildOtpInput({Key? key}) {
-    return Column(
-      key: key,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        CustomGap.gapXL,
-
-        Text(
-          "Enter OTP",
-          style: TextStyle(fontSize: 16.v, fontWeight: FontWeight.w500),
-        ),
-
-        CustomGap.gapXL,
-        Pinput(length: 6, closeKeyboardWhenCompleted: true),
-
-        CustomGap.gapXL,
-        LoadingButton(
-          maxWidth: double.maxFinite,
-          buttonLoading: false,
-          text: 'Verify OTP',
-          onPressed: () {
-            saveToken();
-
-            Navigator.pushNamed(context, NavigationScreen.path);
-          },
-        ),
-      ],
     );
   }
 }

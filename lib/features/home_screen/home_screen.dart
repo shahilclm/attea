@@ -53,7 +53,6 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              height: 170.h,
               padding: EdgeInsets.symmetric(horizontal: CustomPadding.padding),
               child: EasyDateTimeLinePicker.itemBuilder(
                 currentDate: DateTime.now(),
@@ -62,10 +61,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 lastDate: DateTime.now(),
 
                 focusedDate: _focusDate,
-                itemExtent: 70.0.h,
+                itemExtent: SizeUtils.width * .2,
 
                 itemBuilder:
                     (context, date, isSelected, isDisabled, isToday, onTap) {
+
+
+
+                    if(isSelected)
+                      logSuccess(
+                        'Selected date: $date, isSelected: $isSelected, isToday: $isToday',
+                      );
+
                       return GestureDetector(
                         onTap: onTap,
                         child: Container(

@@ -3,6 +3,7 @@ import '/extensions/app_theme_extensions.dart';
 import 'package:flutter/material.dart';
 
 class CommonTextfield extends StatelessWidget {
+
   final IconData? prefixIcon;
   final IconData? sufixIcon;
   final String hintText;
@@ -47,7 +48,7 @@ class CommonTextfield extends StatelessWidget {
     this.textInputAction,
     this.onFieldSubmitted,
     this.elevation = 1,
-    this.fillColor,
+    this.fillColor, 
   });
 
   @override
@@ -64,6 +65,7 @@ class CommonTextfield extends StatelessWidget {
         elevation: elevation,
         shadowColor: appColors.dynamicIconColor,
         child: TextFormField(
+          // initialValue: initialValue ?? '',
           autofocus: autofocus,
           readOnly: readOnly,
           focusNode: focusNode,
