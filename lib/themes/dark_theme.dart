@@ -8,6 +8,8 @@ import '../constants/constants.dart';
 final ThemeData darkTheme = lightTheme.copyWith(
   extensions: [
     AppThemeColors(
+      additionalCustomBoxShadow: CustomColors.boxShadowDark2,
+      customBoxShadows: CustomColors.boxShadowDark,
       secondaryColor: CustomColors.kSecondaryDark,
       dynamicIconColor: Color(0xffE2E2E2),
       primary: CustomColors.primaryColor,

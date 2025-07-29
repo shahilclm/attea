@@ -7,12 +7,14 @@ import 'package:flutter/services.dart';
 import '../extensions/app_theme_extensions.dart';
 
 final lightTheme = ThemeData(
+
   splashFactory: NoSplash.splashFactory,
   brightness: Brightness.light,
   scaffoldBackgroundColor: CustomColors.backgroundColor,
   useMaterial3: true,
   extensions: [
-    AppThemeColors(
+    AppThemeColors(additionalCustomBoxShadow: BoxShadow(color:Colors.transparent),
+      customBoxShadows: CustomColors.boxShadowLight,
       secondaryColor: const Color.fromARGB(255, 221, 221, 220),
 
       dynamicIconColor: Colors.black,

@@ -29,10 +29,22 @@ class CustomDuration {
 }
 
 class CustomColors {
+  // static const =Color(0x);
+  //common foreground color
+  static const universalForeground = Color(0xFF1E1E1E);
+  // === Dashboard UtilColors ===
+
+  static const checkinColor = Color(0xffC8F7C5);
+  static const checkoutColor = Color(0xffFFE0B2);
+  static const leaveColor = Color(0xffF8BBD0);
+  static const employeesColor = Color(0xffB3E5FC);
+
   // === Light Theme Colors ===
 
   static const textFormFilledColor = Color.fromARGB(255, 173, 173, 173);
-  static const primaryColor = Color.fromARGB(255, 36, 116, 201);
+
+  static const primaryColor = employeesColor;
+  static const navigationForegroundColor = Color.fromARGB(255, 36, 116, 201);
   static const secondaryColor = Color(0xFFFEE440);
   static const tertiaryColor = Color(0xFFF0F0F0);
 
@@ -91,6 +103,28 @@ class CustomColors {
     stops: [0.0, 0.5, 1.0],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
+  );
+
+  // === Shadows
+  static final boxShadowDark = BoxShadow(
+    color: Colors.white.withValues(alpha: 0.3), // very soft white glow
+    offset: Offset(2, 5),
+    blurRadius: 10,
+    spreadRadius: 0,
+  );
+
+  static final boxShadowDark2 = BoxShadow(
+    color: Colors.white.withValues(alpha: 0.5), // very soft white glow
+    offset: Offset(2, 1),
+    blurRadius: 2,
+    spreadRadius: 0,
+  );
+
+  static final boxShadowLight = BoxShadow(
+    color: Colors.black.withValues(alpha: .08),
+    offset: Offset(0, 8),
+    blurRadius: 4,
+    spreadRadius: 1,
   );
 
   static const LinearGradient newbuttonGradient = LinearGradient(

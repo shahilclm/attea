@@ -144,7 +144,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
             backgroundColor: navBarTheme.backgroundColor,
 
             // backgroundColor: CustomColors.kDarkDividerColor,
-            selectedItemColor: CustomColors.primaryColor,
+            selectedItemColor: CustomColors.navigationForegroundColor,
             unselectedItemColor: CustomColors.textColorGrey,
             selectedFontSize: 12.fSize,
             unselectedFontSize: 12.fSize,
@@ -182,7 +182,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
             height: isSelected ? 3.v : 0,
             margin: EdgeInsets.only(bottom: isSelected ? 2 : 0),
             decoration: BoxDecoration(
-              color: CustomColors.primaryColor,
+              color: CustomColors.navigationForegroundColor,
               borderRadius: BorderRadius.circular(CustomPadding.paddingSmall),
             ),
           ),
