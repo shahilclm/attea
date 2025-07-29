@@ -97,6 +97,8 @@ dependencies:
   image: ^4.5.4
   shimmer: ^3.0.0
   easy_date_timeline: ^2.0.9
+  flutter_gen: ^5.11.0
+  build_runner: ^2.6.0
 
 dev_dependencies:
   flutter_test:

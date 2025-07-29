@@ -64,8 +64,21 @@ class $AssetsPngGen {
   AssetGenImage get supporttalogo =>
       const AssetGenImage('assets/png/supporttalogo.png');
 
+  AssetGenImage get sunimage => const AssetGenImage('assets/png/sunimage.png');
+  AssetGenImage get moondark => const AssetGenImage('assets/png/moondark.png');
+  AssetGenImage get moondark1 =>
+      const AssetGenImage('assets/png/moondark1.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [authbg, background, bg, supporttalogo];
+  List<AssetGenImage> get values => [
+    authbg,
+    background,
+    bg,
+    supporttalogo,
+    sunimage,
+    moondark,
+    moondark1,
+  ];
 }
 
 class $AssetsSvgGen {

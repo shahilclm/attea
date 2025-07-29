@@ -1,4 +1,7 @@
 // import '../example_pages/carousel_example.dart';
+import 'package:attea/main.dart';
+import 'package:attea/widgets/day_night_switch.dart';
+
 import '../example_pages/carousel_example.dart';
 import '../example_pages/features_example.dart';
 import '../profile_screen/view/profile_screen.dart';
@@ -23,6 +26,7 @@ class NavigationScreen extends StatefulWidget {
 }
 
 class _NavigationScreenState extends State<NavigationScreen> {
+  bool _isDarkTheme = true;
   int _selectedIndex = 0;
   bool _canPop = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -70,6 +74,12 @@ class _NavigationScreenState extends State<NavigationScreen> {
   //       // const Center(child: Text('Profile Page')),
   //       ProfileScreen()
   //     ];
+  void changeTheme() {
+    setState(() {
+      _isDarkTheme = !_isDarkTheme;
+      MyApp.toggleTheme();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,6 +127,21 @@ class _NavigationScreenState extends State<NavigationScreen> {
                   //     context, FeaturesExample.path);
                 },
                 title: Text('Features', style: drawerTextStyle),
+              ),
+              Row(
+                children: [
+                  CustomGap.gapLarge,
+                  Text('Enable Dark Theme', style: drawerTextStyle),
+                  CustomGap.gapLarge,
+                  DayNightSwitch(
+                    onChanged: (value) => changeTheme(),
+                    initialValue: _isDarkTheme,
+                  ),
+                  // Switch(
+                  //   value: _isDarkTheme,
+                  //   onChanged: (value) => changeTheme(),
+                  // ),
+                ],
               ),
             ],
           ),
