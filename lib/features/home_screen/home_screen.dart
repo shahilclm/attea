@@ -136,39 +136,90 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
-            Gap(CustomPadding.padding),
-            Row(
-              children: [
-                DashboardContainer(
-                  title: 'Check In',
-                  icon: LucideIcons.logIn,
-                  count: 20,
-                  appColors: appColors,
-                ),
-                DashboardContainer(
-                  title: 'Check Out',
-                  icon: LucideIcons.logOut,
-                  appColors: appColors,
-                ),
-              ],
-            ),
-            Gap(CustomPadding.paddingLarge),
-            Row(
-              children: [
-                DashboardContainer(
-                  title: 'Leave',
-                  icon: Icons.person_off,
-                  count: 20,
-                  appColors: appColors,
-                ),
 
-                DashboardContainer(
-                  title: 'Employees',
-                  icon: LucideIcons.users,
-                  appColors: appColors,
-                ),
-              ],
-            ),
+CustomScrollView(
+  slivers: [
+    SliverPadding(
+      padding: EdgeInsets.all(CustomPadding.padding),
+      sliver: SliverGrid(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, 
+          mainAxisSpacing: CustomPadding.paddingLarge,
+          crossAxisSpacing: CustomPadding.padding,
+          childAspectRatio: 1.2, 
+        ),
+        delegate: SliverChildListDelegate([
+          DashboardContainer(
+            title: 'Check In',
+            icon: LucideIcons.logIn,
+            count: 20,
+            appColors: appColors,
+          ),
+          DashboardContainer(
+            title: 'Check Out',
+            icon: LucideIcons.logOut,
+            count: 15, 
+            appColors: appColors,
+          ),
+          DashboardContainer(
+            title: 'Leave',
+            icon: Icons.person_off,
+            count: 5,
+            appColors: appColors,
+          ),
+          DashboardContainer(
+            title: 'Employees',
+            icon: LucideIcons.users,
+            count: 42,
+            appColors: appColors,
+          ),
+        ]),
+      ),
+    ),
+  ],
+)
+,
+
+
+            
+
+
+
+
+       
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+            
+            
+
+            
           ],
         ),
       ),

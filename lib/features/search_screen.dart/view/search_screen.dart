@@ -1,4 +1,4 @@
-
+ 
 
 import '/constants/constants.dart';
 import '/widgets/common_textfield.dart';
@@ -17,7 +17,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void dispose() {
     controller.dispose();
-    // TODO: implement dispose
+    // ODO: implement dispose
     super.dispose();
   }
 
