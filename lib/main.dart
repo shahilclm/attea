@@ -1,5 +1,7 @@
 import 'package:attea/firebase_options.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 
 import '/core/localization/localization_service.dart';
 import '/services/get_device_details.dart';
@@ -66,6 +68,8 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Sizer(
       builder: (context, orientation, deviceType) => MaterialApp(
+        // locale: DevicePreview.locale(context),
+        // builder: DevicePreview.appBuilder,
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,

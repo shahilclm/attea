@@ -1,5 +1,7 @@
 import 'package:attea/firebase_options.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 
 import '/core/logger.dart';
 import '/services/shared_pref_services.dart';
@@ -10,7 +12,8 @@ import 'main.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);  FlavorConfig.initialize(
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FlavorConfig.initialize(
     const FlavorConfig(
       // baseUrl: 'https://debug.example.com/shahil',
       flavor: Flavor.debug,
@@ -24,6 +27,12 @@ await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);  
 
   String api = BaseUrlConstant.getBaseUrl(ApiType.baseUrl);
   logWarning('Calling API: $api');
-
+  // runApp(
+  //   DevicePreview(
+  //     enabled: !kReleaseMode,
+  //     builder: (context) => MyApp(key: appKey), // Wrap your app
+  //   ),
+  //   // MyApp(key: appKey)
+  // );
   runApp(MyApp(key: appKey));
 }
