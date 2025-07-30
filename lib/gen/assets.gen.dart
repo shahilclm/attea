@@ -1,3 +1,5 @@
+// dart format width=80
+
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  FlutterGen
@@ -5,9 +7,19 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
+// ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
 
 import 'package:flutter/widgets.dart';
+
+class $AssetsFontsGen {
+  const $AssetsFontsGen();
+
+  /// File path: assets/fonts/IntelOneMono-Regular.ttf
+  String get intelOneMonoRegular => 'assets/fonts/IntelOneMono-Regular.ttf';
+
+  /// List of all assets
+  List<String> get values => [intelOneMonoRegular];
+}
 
 class $AssetsIconsGen {
   const $AssetsIconsGen();
@@ -60,24 +72,29 @@ class $AssetsPngGen {
   /// File path: assets/png/bg.jpeg
   AssetGenImage get bg => const AssetGenImage('assets/png/bg.jpeg');
 
+  /// File path: assets/png/moondark.png
+  AssetGenImage get moondark => const AssetGenImage('assets/png/moondark.png');
+
+  /// File path: assets/png/moondark1.png
+  AssetGenImage get moondark1 =>
+      const AssetGenImage('assets/png/moondark1.png');
+
+  /// File path: assets/png/sunimage.png
+  AssetGenImage get sunimage => const AssetGenImage('assets/png/sunimage.png');
+
   /// File path: assets/png/supporttalogo.png
   AssetGenImage get supporttalogo =>
       const AssetGenImage('assets/png/supporttalogo.png');
-
-  AssetGenImage get sunimage => const AssetGenImage('assets/png/sunimage.png');
-  AssetGenImage get moondark => const AssetGenImage('assets/png/moondark.png');
-  AssetGenImage get moondark1 =>
-      const AssetGenImage('assets/png/moondark1.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
     authbg,
     background,
     bg,
-    supporttalogo,
-    sunimage,
     moondark,
     moondark1,
+    sunimage,
+    supporttalogo,
   ];
 }
 
@@ -93,16 +110,23 @@ class $AssetsSvgGen {
   /// File path: assets/svg/google.svg
   String get google => 'assets/svg/google.svg';
 
+  /// File path: assets/svg/moon.svg
+  String get moon => 'assets/svg/moon.svg';
+
   /// File path: assets/svg/rocket.svg
   String get rocket => 'assets/svg/rocket.svg';
 
+  /// File path: assets/svg/sun.svg
+  String get sun => 'assets/svg/sun.svg';
+
   /// List of all assets
-  List<String> get values => [facebook, gmail, google, rocket];
+  List<String> get values => [facebook, gmail, google, moon, rocket, sun];
 }
 
 class Assets {
   const Assets._();
 
+  static const $AssetsFontsGen fonts = $AssetsFontsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsLottiesGen lotties = $AssetsLottiesGen();
   static const $AssetsPngGen png = $AssetsPngGen();
@@ -110,12 +134,18 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
+  const AssetGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+    this.animation,
+  });
 
   final String _assetName;
 
   final Size? size;
   final Set<String> flavors;
+  final AssetGenImageAnimation? animation;
 
   Image image({
     Key? key,
@@ -177,4 +207,16 @@ class AssetGenImage {
   String get path => _assetName;
 
   String get keyName => _assetName;
+}
+
+class AssetGenImageAnimation {
+  const AssetGenImageAnimation({
+    required this.isAnimation,
+    required this.duration,
+    required this.frames,
+  });
+
+  final bool isAnimation;
+  final Duration duration;
+  final int frames;
 }

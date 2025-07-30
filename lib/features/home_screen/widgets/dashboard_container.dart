@@ -62,7 +62,7 @@ class DashboardContainer extends StatelessWidget {
                 title,
                 style: TextStyle(
                   fontFamily: CustomFont.intelOneMono,
-                  fontSize: 18.fSize,
+                  fontSize: 16.fSize,
                   color: foregroundColor ?? CustomColors.universalForeground,
                   fontWeight: FontWeight.w900,
                 ),
@@ -72,7 +72,7 @@ class DashboardContainer extends StatelessWidget {
           Text(
             count.toString(),
             style: TextStyle(
-              fontSize: 30.fSize,
+              fontSize: 24.fSize,
               fontFamily: CustomFont.intelOneMono,
               fontWeight: FontWeight.w900,
               color: foregroundColor ?? CustomColors.universalForeground,

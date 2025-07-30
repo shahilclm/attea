@@ -2,6 +2,7 @@ import 'package:attea/constants/constants.dart';
 import 'package:attea/gen/assets.gen.dart';
 import 'package:attea/services/size_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class DayNightSwitch extends StatefulWidget {
   final bool initialValue;
@@ -51,15 +52,26 @@ class _DayNightSwitchState extends State<DayNightSwitch> {
           children: [
             Align(
               alignment: isDay ? Alignment.centerLeft : Alignment.centerRight,
-              child: CircleAvatar(
-                radius: 14.h,
-                backgroundColor: Colors.white,
-                child: Image.asset(
-                  isDay ? Assets.png.sunimage.path : Assets.png.moondark1.path,
-                  width: 20,
-                  height: 20,
-                ),
-              ),
+              child: isDay
+                  ? CircleAvatar(
+                      radius: 14.h,
+                      backgroundColor: Colors.white,
+                      child: SvgPicture.asset(
+                        Assets.svg.sun,
+                        fit: BoxFit.contain,
+                      ),
+                    )
+                  : CircleAvatar(
+                      radius: 14.h,
+                      backgroundColor: const Color.fromARGB(255, 51, 51, 51),
+                      child: SvgPicture.asset(
+                        Assets.svg.moon,
+
+                        fit: BoxFit.cover,
+                        // width: SizeUtils.width * .5,
+                        // height: SizeUtils.width * .5,
+                      ),
+                    ),
             ),
           ],
         ),

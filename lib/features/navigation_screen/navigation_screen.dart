@@ -131,7 +131,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
               Row(
                 children: [
                   CustomGap.gapLarge,
-                  Text('Enable Dark Theme', style: drawerTextStyle),
+                  Text('Toggle Theme', style: drawerTextStyle),
                   CustomGap.gapLarge,
                   DayNightSwitch(
                     onChanged: (value) => changeTheme(),
