@@ -14,7 +14,7 @@ import '/exporter/exporter.dart';
 import 'package:flutter/material.dart';
 
 import '../../services/show_exit_confirmation_dialogue.dart';
-import '../home_screen/home_screen.dart';
+import '../home_screen/view/home_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
   static const String path = '/navigation-screen';

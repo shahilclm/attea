@@ -183,7 +183,7 @@ class _EmployeeScreenState extends State<EmployeeScreen>
                         ),
                         margin: EdgeInsets.symmetric(
                           vertical: CustomPadding.padding,
-                          horizontal: CustomPadding.paddingLarge,
+                          horizontal: CustomPadding.padding,
                         ),
                         child: ListTile(
                           leading: CircleAvatar(

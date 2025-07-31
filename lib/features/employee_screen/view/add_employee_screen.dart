@@ -276,13 +276,31 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                           });
                         },
                       ),
+                      CustomDropdownField<String>(
+                        label: '',
+                        hintText: ' Select Department',
+                        value: selectedCategory.isEmpty
+                            ? null
+                            : selectedCategory,
+                        items: categories.map((String category) {
+                          return DropdownMenuItem<String>(
+                            value: category,
+                            child: Text(category),
+                          );
+                        }).toList(),
+                        onChanged: (newCategory) {
+                          setState(() {
+                            selectedCategory = newCategory ?? '';
+                          });
+                        },
+                      ),
                       CommonTextfield(
                         controller: employeeIdController,
                         hintText: 'Enter Employee Id',
                       ),
                       CommonTextfield(
                         controller: roleController,
-                        hintText: 'Enter Role',
+                        hintText: 'Job Role',
                       ),
                       GestureDetector(
                         onTap: () => _selectDate(context),

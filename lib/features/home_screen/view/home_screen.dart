@@ -1,14 +1,12 @@
 import 'package:attea/widgets/custom_date_picker.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
-import '../../extensions/app_theme_extensions.dart';
-import '../../main.dart';
+import '../../../extensions/app_theme_extensions.dart';
 import '/exporter/exporter.dart';
-import 'widgets/dashboard_container.dart';
+import '../widgets/dashboard_container.dart';
 
 class HomeScreen extends StatefulWidget {
   final VoidCallback openDrawer;
